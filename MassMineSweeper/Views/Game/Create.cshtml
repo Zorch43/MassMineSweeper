@@ -1,0 +1,68 @@
+﻿@model MassMineSweeper.Models.MineSweeperGame
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>MineSweeperGame</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GameName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GameName)
+                @Html.ValidationMessageFor(model => model.GameName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RespawnLength, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RespawnLength)
+                @Html.ValidationMessageFor(model => model.RespawnLength)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GameHeight, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GameHeight)
+                @Html.ValidationMessageFor(model => model.GameHeight)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GameWidth, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GameWidth)
+                @Html.ValidationMessageFor(model => model.GameWidth)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NumMines, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NumMines)
+                @Html.ValidationMessageFor(model => model.NumMines)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
