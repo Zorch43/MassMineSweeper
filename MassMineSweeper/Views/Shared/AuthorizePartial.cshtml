@@ -1,0 +1,16 @@
+﻿@if (User.Identity.IsAuthenticated)
+{
+    @:Hello @User.Identity.Name
+    <a href="/Game/Search/">Join a game</a> @:-
+    <a href="@Url.Action("logout", "auth")">Log Out</a>
+    if (User.IsInRole("Admin"))
+    {
+        @:- <a href="@Url.Action("ManageUserRoles","auth")">Manage Roles</a>
+    }
+}
+else
+{
+    <a href="@Url.Action("login", "auth")">Log In</a> @:- 
+    <a href="@Url.Action("Register", "auth")">Register</a>
+
+}

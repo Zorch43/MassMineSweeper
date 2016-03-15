@@ -3,5 +3,17 @@
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
-
+@Html.Partial("AuthorizePartial")
 <p>This page contains instructions on how to play Mass Minesweeper</p>
+<p><ul>
+    <li><h4>The Rules:</h4>
+    <p>Figure out where the mine are hidden by deducing thier position based on the numbers on revealed tiles.  
+    The number is equal to the number of mines surrounding that tile, both adjacent and diagonal.
+    In a twist on the traditional Minesweeper formula, multiple players cooperate to clear the minefield without getting themselves blown up.</p></li>
+    <li><h4>The Controls:</h4>
+    <p>Left click on a tile to reveal it.  This will trigger a mine if you guess incorrectly, so be careful!  Right click on a tile to place or remove a flag.  
+        flags let you and other players where mines are, so be sure to place them correctly!</p></li>
+    <li><h4>The Consequences:</h4>
+    <p>If you trip a mine, you will be killed permanently, and be unable to clear the minefields.  
+        If you flag or reveal the last tile, you will be promoted to an Admin.  Admins don't die when they are killed.</p></li>
+    </ul></p>

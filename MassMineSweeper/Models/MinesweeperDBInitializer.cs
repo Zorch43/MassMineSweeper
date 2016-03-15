@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -8,63 +10,60 @@ namespace MassMineSweeper.Models
 {
     public class MinesweeperDBInitializer : DropCreateDatabaseAlways<MassMineSweeperContext>
     {
+        UserManager<Member> userManager;
+        PasswordHasher hasher = new PasswordHasher();
+
          protected override void Seed(MassMineSweeperContext context)
         {
-            //create player accounts
-            GamePlayer player1 = new GamePlayer()
-            {
-                UserName = "Player_One",
-                Email = "Aceinthehole@yahoo.com",
-                Password = "Pass_word1",
-                XPos = 0,
-                YPos = 0,
-                IsAdmin = false,
-                MineSweeperGameId = null,
-                RespawnAt = null
-            };
 
-            GamePlayer player2 = new GamePlayer()
-            {
-                UserName = "Player_A",
-                Email = "Admin@MassMineSweeper.com",
-                Password = "IAmTheLaw",
-                XPos = 0,
-                YPos = 0,
-                IsAdmin = true,
-                MineSweeperGameId = null,
-                RespawnAt = null
-            };
+            userManager = new UserManager<Member>(new UserStore<Member>(context));
+            context.Roles.Add(new IdentityRole("Admin"));
+            //create admin account
 
-            //create games
-            MineSweeperGame game1 = new MineSweeperGame()
-            {
-                GameName = "Test Game",
-                GameHeight = 100,
-                GameWidth = 100,
-                NumMines = 20,
-                RespawnLength = new TimeSpan(18,0,0),
-                DateCreated = DateTime.Now,
-                Tiles = null
-            };
-
-            MineSweeperGame game2 = new MineSweeperGame()
-            {
-                GameName = "Mega-Mines",
-                GameHeight = 1000,
-                GameWidth = 1000,
-                NumMines = 200000,
-                RespawnLength = new TimeSpan(1, 0, 0),
-                DateCreated = DateTime.Now,
-                Tiles = null
-            };
+            InitUser("Admin", "Cooper.t.0043@gmail.com", "IAmTheLaw", "Admin");
 
             //populate database
-            context.GamePlayers.Add(player1);
-            context.GamePlayers.Add(player2);
-            context.MineSweeperGames.Add(game1);
-            context.MineSweeperGames.Add(game2);
+            
 
             base.Seed(context);
+         }
+
+         private Member InitUser(string name, string email, string password, string roleName)
+         {
+
+             Member user = new Member()
+             {
+                 UserName = name,
+                 Email = email,
+                 PasswordHash = hasher.HashPassword(password)
+             };
+
+             Member oldUser = userManager.FindByName(name);
+
+             if (oldUser == null)
+             {
+                 /*var result = */
+                 userManager.Create(user, password);
+                 userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                 /*if (result.Succeeded)
+                 {
+                     var identity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+
+                    
+                 }*/
+             }
+             else
+             {
+                 oldUser.PasswordHash = user.PasswordHash;
+                 oldUser.Email = user.Email;
+
+                 user = oldUser;
+             }
+
+             //set role
+             userManager.AddToRole(user.Id, roleName);
+
+             return user;
          }
         
     }

@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Search";
 }
-
+@Html.Partial("AuthorizePartial")
 <h2>Search</h2>
 
 <p>
@@ -37,13 +37,7 @@
             @Html.DisplayNameFor(model => model.DateCreated)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RespawnLength)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GameHeight)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GameWidth)
+            @Html.DisplayNameFor(model => model.GameWidth) x @Html.DisplayNameFor(model => model.GameHeight)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.NumMines)
@@ -60,19 +54,14 @@
             @Html.DisplayFor(modelItem => item.DateCreated)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.RespawnLength)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GameHeight)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GameWidth)
+            @Html.DisplayFor(modelItem => item.GameWidth) x @Html.DisplayFor(modelItem => item.GameHeight)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.NumMines)
         </td>
         <td>
-            @Html.ActionLink("Play", "Play", new { id=item.MineSweeperGameId })
+            @Html.ActionLink("Play", "Play", new { id=item.MineSweeperGameID }) -
+            @Html.ActionLink("Delete", "Delete", new { id = item.MineSweeperGameID }) 
         </td>
     </tr>
 }

@@ -3,6 +3,69 @@
 @{
     ViewBag.Title = "Mass Minesweeper";
 }
-
+@Html.Partial("AuthorizePartial")
 <h3>You are playing: @Html.DisplayFor(model => model.GameName)</h3>
+<h4>Remaining Mines: @Model.GetRemainingMines()</h4>
+<h5>@Html.ActionLink("Back to Search", "Search")</h5>
+
+<script type="text/javascript">
+    function clickTile(e, x, y) {
+        if(e.which == 3){
+            //flag it
+            document.getElementById("Flag-" + x +"," + y).submit();
+        }
+        else{
+            //reveal it
+            document.getElementById("Reveal-" + x +"," + y).submit();
+        }
+    }
+
+    function disableContext(e){
+        alert(status);
+        return false;
+    }
+</script>
+
+
+
+<table class="table">
+    @for (int x = 0; x < Model.GameWidth; x++)
+    {
+        <tr>
+            @for (int y = 0; y < Model.GameHeight; y++)
+            {
+                <td>
+                    @{
+                        var tile = Model.GetTileByCoordinates(x, y);
+                        
+                      
+                        if (tile != null)
+                        {
+                            var imagePath = "/Content/Images/" + Model.GetTileState(x, y) + ".png";
+                            using (Html.BeginForm("Reveal", "Game", FormMethod.Post, new { id = "Reveal-" + x.ToString() + "," + y.ToString() }))
+                            {
+                                <input type="hidden" name="XPos" value="@x" />
+                                <input type="hidden" name="YPos" value="@y" />
+                                <input type="hidden" name="MineSweeperGameID" value="@Model.MineSweeperGameID" />
+                                //<input type="image" src="@imagePath" onclick="Flag(event)">
+                            }
+                            
+                            using (Html.BeginForm("Flag", "Game", FormMethod.Post, new { id = "Flag-" + x.ToString() + "," + y.ToString() }))
+                            {
+                                <input type="hidden" name="XPos" value="@x" />
+                                <input type="hidden" name="YPos" value="@y" />
+                                <input type="hidden" name="MineSweeperGameID" value="@Model.MineSweeperGameID" />
+                                //<input type="image" src="@imagePath" onclick="Flag(event)">
+                            }
+                            
+                            <img src="@imagePath" onmousedown="clickTile(event, @x, @y)" oncontextmenu="return false" />                        
+                        
+                        }
+                      }
+                    
+                </td>
+            }
+        </tr>
+    }
+</table>
 

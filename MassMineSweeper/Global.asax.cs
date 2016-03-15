@@ -14,10 +14,9 @@ namespace MassMineSweeper
     {
         protected void Application_Start()
         {
-            Database.SetInitializer(new MinesweeperDBInitializer());
+            //Database.SetInitializer(new MinesweeperDBInitializer());
 
             AreaRegistration.RegisterAllAreas();
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }

@@ -174,32 +174,50 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\MineSweeperLogic.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\GamePlayer.cs" />
     <Compile Include="Models\GameTile.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LogInModel.cs" />
     <Compile Include="Models\MassMineSweeperContext.cs" />
+    <Compile Include="Models\Member.cs" />
+    <Compile Include="Models\MineFieldFactory.cs" />
     <Compile Include="Models\MinesweeperDBInitializer.cs" />
     <Compile Include="Models\MineSweeperGame.cs" />
+    <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="Models\TileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\Default.png" />
+    <Content Include="Content\Images\Eight.png" />
+    <Content Include="Content\Images\Empty.png" />
+    <Content Include="Content\Images\Five.png" />
+    <Content Include="Content\Images\Flagged.png" />
+    <Content Include="Content\Images\Four.png" />
+    <Content Include="Content\Images\Mine.png" />
+    <Content Include="Content\Images\One.png" />
+    <Content Include="Content\Images\Seven.png" />
+    <Content Include="Content\Images\Six.png" />
+    <Content Include="Content\Images\Three.png" />
+    <Content Include="Content\Images\Two.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\MassMineSweeper - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\MassMineSweeper - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -229,13 +247,16 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\User\Login.cshtml" />
-    <Content Include="Views\User\Register.cshtml" />
-    <Content Include="Views\User\Detail.cshtml" />
-    <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\Game\Play.cshtml" />
     <Content Include="Views\Game\Create.cshtml" />
     <Content Include="Views\Game\Search.cshtml" />
+    <Content Include="Views\Auth\LogIn.cshtml" />
+    <Content Include="Views\Auth\Register.cshtml" />
+    <Content Include="Views\Auth\ManageUserRoles.cshtml" />
+    <Content Include="Views\Game\Delete.cshtml" />
+    <Content Include="Views\Game\YouAreDead.cshtml" />
+    <Content Include="Views\Game\YouWin.cshtml" />
+    <Content Include="Views\Shared\AuthorizePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

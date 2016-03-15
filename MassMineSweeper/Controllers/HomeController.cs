@@ -8,11 +8,13 @@ namespace MassMineSweeper.Controllers
 {
     public class HomeController : Controller
     {
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult About()
         {
             ViewBag.Message = "How to play Mass Minesweeper";

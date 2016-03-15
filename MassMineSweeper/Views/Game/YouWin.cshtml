@@ -1,0 +1,9 @@
+﻿
+@{
+    ViewBag.Title = "You Win";
+}
+@Html.Partial("AuthorizePartial")
+<h1>You Win!</h1>
+<p>You have won and cleared the minefield.  but there are many more that need to be cleared.</p>
+@Html.ActionLink("Return", "Search", "Game")
+

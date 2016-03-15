@@ -3,10 +3,10 @@
 }
 
 <h1>Mass Minesweeper</h1>
-
+@Html.Partial("AuthorizePartial")
 <p>
     Can your team clear the field of mines? Are you confident in not only your own reasoning abilities, but the reasoning abilities of your team-mates? Will you survive, or will you trip a mine?
     <br/>
     Welcome to Mass Minesweeper: a multiplayer puzzle game of immense scope and brutal consequences for failure.  
 </p>
-<a href="About">How to play</a> | <a href="/User/Login">Login</a> | <a href="/Game/Search/">Join a game</a>
+@Html.ActionLink("How to Play", "About")
